@@ -1,4 +1,4 @@
-# Qareer API Boilerplate
+# crud-go-echo-gorm
 This project is boilerplate to build API in Go Echo Framework
 - PORT : 3000
 - PATH : /api/boilerplate
@@ -29,7 +29,7 @@ $ ENV=DEV ./repo-name
 $ docker-compose up 
 ```
 
-## to generate swagger documentation
+## Generate swagger documentation
 
 install go swagger
 
@@ -64,4 +64,4 @@ This boilerplate have default feature
 - Elasticsearch
 
 # Author
-Qareer Backend Team
+mcholismalik.official@gmail.com
