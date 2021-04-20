@@ -1,0 +1,14 @@
+version: "2"
+services:
+  app:
+    restart: always
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - network
+ 
+networks:
+  network:
+    external:
+      name: net

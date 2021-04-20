@@ -1,0 +1,179 @@
+basePath: /boilerplate
+definitions:
+  auth.LoginDTO:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  auth.LoginResponseDTO:
+    properties:
+      token:
+        type: string
+    type: object
+  auth.RegisterDTO:
+    properties:
+      name:
+        type: string
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - name
+    - password
+    - username
+    type: object
+  auth.ResponseLoginWrapper:
+    properties:
+      body:
+        properties:
+          data:
+            $ref: '#/definitions/auth.LoginResponseDTO'
+          meta:
+            $ref: '#/definitions/response.MetaResponse'
+        type: object
+    type: object
+  response.ErrorResponse:
+    properties:
+      error:
+        type: string
+      meta:
+        $ref: '#/definitions/response.MetaResponse'
+    type: object
+  response.MetaResponse:
+    properties:
+      message:
+        default: "true"
+        type: string
+      success:
+        default: true
+        type: boolean
+    type: object
+  response.SuccessResponse:
+    properties:
+      data:
+        type: object
+      meta:
+        $ref: '#/definitions/response.MetaResponse'
+    type: object
+host: be-qareer.com
+info:
+  contact: {}
+  description: This is a doc for crud-go-echo-gorm.
+  title: crud-go-echo-gorm
+  version: 0.0.1
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      description: Login accounts
+      parameters:
+      - description: request body login
+        in: body
+        name: register
+        required: true
+        schema:
+          $ref: '#/definitions/auth.LoginDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.ResponseLoginWrapper'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Login accounts
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      description: Register accounts
+      parameters:
+      - description: request body register
+        in: body
+        name: register
+        required: true
+        schema:
+          $ref: '#/definitions/auth.RegisterDTO'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      summary: Register accounts
+      tags:
+      - auth
+  /sample:
+    post:
+      consumes:
+      - application/json
+      description: Get samplle
+      parameters:
+      - description: Authorization
+        in: header
+        name: Authorization
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/response.SuccessResponse'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/response.ErrorResponse'
+      security:
+      - ApiKeyAuth: []
+      summary: get sample
+      tags:
+      - sample
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"
