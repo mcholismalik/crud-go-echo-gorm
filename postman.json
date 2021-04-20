@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "846808c3-f2b9-4f87-9551-ddf4f3307579",
-		"name": "CODE - Qareer API Boilerplate",
+		"name": "crud-go-echo-gorm",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
